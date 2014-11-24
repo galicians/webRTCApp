@@ -25,5 +25,9 @@
     "prestart": "npm install",
     "start": "node app.js",
     "test": "node node_modules/karma/bin/karma start test/karma.conf.js"
+  },
+  "subdomain": "yes",
+  "engines": {
+    "node": "0.10.x"
   }
 }

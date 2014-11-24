@@ -3,12 +3,16 @@
  * Module dependencies
  */
 
-var express = require('express'),
-  routes = require('./routes'),
-  http = require('http'),
-  path = require('path');
+var express = require('express');
+var routes = require('./routes');
+var http = require('https');
+var path = require('path');
+var fs = require('fs');
 
-
+var options = {
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem')
+};
 
 var app = module.exports = express();
 
@@ -61,6 +65,6 @@ app.get('/highscore', routes.index);
  * Start Server
  */
 
-http.createServer(app).listen(app.get('port'), function () {
+http.createServer(options, app).listen(app.get('port'), function () {
   console.log('Express server listening on port ' + app.get('port'));
 });
